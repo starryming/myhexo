@@ -162,7 +162,86 @@ systemctl start firewalld.service
 
 [搭建参考](https://blog.csdn.net/csdn_lqr/article/details/53333946)
 
+##### 安装：
 
+```java
+yum install vsftpd
+service vsftpd start
+```
+
+
+
+```java
+使用xftp进行匿名访问测试vsftpd安装成功否
+```
+
+
+
+##### 关闭匿名访问：
+
+```java
+vim /etc/vsftpd/vsftpd.conf
+
+/*
+annoymous_enable=YES ——> annoymous_enable=NO
+
+最后面添加端口范围开启：
+pasv_min_port=40000
+pasv_max_port=40999
+*/
+
+service vsftpd restart
+
+chkconfig vsftpd on
+```
+
+
+
+##### 防火墙开放40000-40999范围端口：
+
+```java
+firewall-cmd --list-ports
+
+firewall-cmd --zone=public --add-port=40000-40999/tcp --permanent  
+
+firewall-cmd --reload  
+```
+
+
+
+```java
+getsebool -a | grep ftp
+
+/*
+ftpd_anon_write --> off
+ftpd_connect_all_unreserved --> off
+ftpd_connect_db --> off
+ftpd_full_access --> on # 需要开启
+ftpd_use_cifs --> off
+ftpd_use_fusefs --> off
+ftpd_use_nfs --> off
+ftpd_use_passive_mode --> off
+httpd_can_connect_ftp --> off
+httpd_enable_ftp_server --> off
+tftp_anon_write --> off
+tftp_home_dir --> on # 需要开启
+*/
+
+setsebool -P allow_ftpd_full_access on
+setsebool -P tftp_home_dir on
+```
+
+
+
+##### 添加ftp用户:
+
+```java
+useradd -d /home/ftpuser1 ftpuser1
+passwd ftpuser1
+usermod -s /sbin/nologin ftpuser1	// 只允许ftp
+
+service vsftpd restart
+```
 
 ## 三、搭建Nginx图片服务器
 

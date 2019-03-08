@@ -6,13 +6,13 @@
 title: blog
 subtitle:
 description:
-author: Jim
+author: Jima
 language: zh-CN
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://starryming.github.io/
+url: https://starryming.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

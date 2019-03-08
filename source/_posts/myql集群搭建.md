@@ -6,11 +6,11 @@ tags:
 - mysql
 categories: technology
 keywords: mysql
-description: 搭建mysql集群 / 主从被
+description: 搭建mysql集群 / 主从备
 ---
 
 
-搭建mysql集群 / 主从被
+搭建mysql集群 / 主从备
 
 #### 准备
 
