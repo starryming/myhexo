@@ -144,7 +144,7 @@ public class PictureController {
      *
      * @param image 头像文件
      * @param id 用户id
-     * @return com.lucky.base.common.Result<java.lang.String>
+     * @return java.lang.String
      */
     @ResponseBody
     @RequestMapping(value = "/upload/{id}", method = RequestMethod.POST)
